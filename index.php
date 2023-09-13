@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="/crud/crudnots/index.php" method="post">
+                    <form action="/crud/CRUD/index.php" method="post">
                         <input type="hidden" name="snoEdit" id="snoEdit">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Note title</label>
@@ -120,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <div class="container my-4 border border-dark rounded">
         <h2>Add a note</h2>
-        <form action="/crud/crudnots/index.php?update=true" method="post">
+        <form action="/crud/CRUD/index.php?update=true" method="post">
             <input type="hidden" name="snoEdit">
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Note title</label>
