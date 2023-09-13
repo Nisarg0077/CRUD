@@ -12,21 +12,39 @@ if (!$conn) {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if(isset($_POST['snoEdit'])){
-        echo "yes";
+        //Update
+        $sno = $_POST["snoEdit"];
+        $title = $_POST["titleEdit"];
+        $description = $_POST["descriptionEdit"];
+
+        // $sql = "UPDATE `notes` SET `title` = '$title' AND `description` = '$description' WHERE `notes`.`sno` = $sno";
+        $sql = "UPDATE `notes` SET `title` = '$title', `description` = '$description' WHERE `notes`.`sno` = $sno";
+
+        // $result = mysqli_query($conn, $sql);
+        // if($result){
+        //     echo "We updated the record successfully";
+        // }
+        // else{
+        //     echo "We could not update the record successfully";
+        // }
         exit();
     }
-    $title = $_POST["title"];
-    $description = $_POST["description"];
+    else{
 
-    $sql = "INSERT INTO `notes` (`title`, `description`) VALUES ('$title', '$description')";
+        
+        $title = $_POST["title"];
+        $description = $_POST["description"];
 
-    $result = mysqli_query($conn, $sql);
+        $sql = "INSERT INTO `notes` (`title`, `description`) VALUES ('$title', '$description')";
 
-    if ($result) {
-        // echo "The record was inserted successfully!</br>";
-        $insert = true;
-    } else {
-        echo "The record was not inserted because of this error ---->" . mysqli_error($conn);
+        $result = mysqli_query($conn, $sql);
+
+        if ($result) {
+            // echo "The record was inserted successfully!</br>";
+            $insert = true;
+        } else {
+            echo "The record was not inserted because of this error ---->" . mysqli_error($conn);
+        }
     }
 }
 ?>
@@ -72,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <label for="desc">Note Description</label>
                             <textarea class="form-control" id="descriptionEdit" name="descriptionEdit" rows="3"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary my-3">Update note</button>
+                        <button type="submit" target="_blank" class="btn btn-primary my-3">Update note</button>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -120,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <div class="container my-4 border border-dark rounded">
         <h2>Add a note</h2>
-        <form action="/crud/CRUD/index.php?update=true" method="post">
+        <form action="/crud/CRUD/index.php" method="post"  target="_self">
             <input type="hidden" name="snoEdit">
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Note title</label>
