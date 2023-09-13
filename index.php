@@ -18,7 +18,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $description = $_POST["descriptionEdit"];
 
         // $sql = "UPDATE `notes` SET `title` = '$title' AND `description` = '$description' WHERE `notes`.`sno` = $sno";
-        $sql = "UPDATE `notes` SET `title` = '$title', `description` = '$description' WHERE `notes`.`sno` = $sno";
+        $sql = "UPDATE `notes` SET `title` = '$title', `description` = '$description' WHERE `notes`.`sno` = '$sno'";
+        $result = mysqli_query($conn, $sql);
+        if ($result) {
+            $update = true;
+        } else {
+            echo "We could not update the record successfully";
+        }
 
         // $result = mysqli_query($conn, $sql);
         // if($result){
@@ -90,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <label for="desc">Note Description</label>
                             <textarea class="form-control" id="descriptionEdit" name="descriptionEdit" rows="3"></textarea>
                         </div>
-                        <button type="submit" target="_blank" class="btn btn-primary my-3">Update note</button>
+                        <button type="submit" class="btn btn-primary m-3">Update note</button>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -138,7 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <div class="container my-4 border border-dark rounded">
         <h2>Add a note</h2>
-        <form action="/crud/CRUD/index.php" method="post"  target="_self">
+        <form action="/crud/CRUD/index.php" method="post">
             <input type="hidden" name="snoEdit">
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Note title</label>
@@ -213,3 +219,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </body>
 
 </html>
+
+<!-- 1:09:16 / 1:31:49 -->
