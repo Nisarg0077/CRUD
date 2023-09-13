@@ -11,6 +11,10 @@ if (!$conn) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if(isset($_POST['snoEdit'])){
+        echo "yes";
+        exit();
+    }
     $title = $_POST["title"];
     $description = $_POST["description"];
 
@@ -39,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
 
-    <title>iNotes</title>
+    <title>CRUD APP</title>
 
 </head>
 
@@ -58,8 +62,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="/crud/index.php" method="post">
-                        <input type="hidden" name="snoEdit">
+                    <form action="/crud/crudnots/index.php" method="post">
+                        <input type="hidden" name="snoEdit" id="snoEdit">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Note title</label>
                             <input type="text" class="form-control" id="titleEdit" name="titleEdit" aria-describedby="emailHelp">
@@ -80,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">iNOTEs</a>
+            <a class="navbar-brand" href="#">PHP CRUD</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -116,8 +120,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <div class="container my-4 border border-dark rounded">
         <h2>Add a note</h2>
-        <form action="/crud/index.php?update=true" method="post">
-            <input type="hidden" name="snoEdit" id="snoEdit">
+        <form action="/crud/crudnots/index.php?update=true" method="post">
+            <input type="hidden" name="snoEdit">
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Note title</label>
                 <input type="text" class="form-control" id="title" name="title" aria-describedby="emailHelp">
