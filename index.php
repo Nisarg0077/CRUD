@@ -12,21 +12,39 @@ if (!$conn) {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if(isset($_POST['snoEdit'])){
-        echo "yes";
+        //Update
+        $sno = $_POST["snoEdit"];
+        $title = $_POST["titleEdit"];
+        $description = $_POST["descriptionEdit"];
+
+        // $sql = "UPDATE `notes` SET `title` = '$title' AND `description` = '$description' WHERE `notes`.`sno` = $sno";
+        $sql = "UPDATE `notes` SET `title` = '$title', `description` = '$description' WHERE `notes`.`sno` = $sno";
+
+        // $result = mysqli_query($conn, $sql);
+        // if($result){
+        //     echo "We updated the record successfully";
+        // }
+        // else{
+        //     echo "We could not update the record successfully";
+        // }
         exit();
     }
-    $title = $_POST["title"];
-    $description = $_POST["description"];
+    else{
 
-    $sql = "INSERT INTO `notes` (`title`, `description`) VALUES ('$title', '$description')";
+        
+        $title = $_POST["title"];
+        $description = $_POST["description"];
 
-    $result = mysqli_query($conn, $sql);
+        $sql = "INSERT INTO `notes` (`title`, `description`) VALUES ('$title', '$description')";
 
-    if ($result) {
-        // echo "The record was inserted successfully!</br>";
-        $insert = true;
-    } else {
-        echo "The record was not inserted because of this error ---->" . mysqli_error($conn);
+        $result = mysqli_query($conn, $sql);
+
+        if ($result) {
+            // echo "The record was inserted successfully!</br>";
+            $insert = true;
+        } else {
+            echo "The record was not inserted because of this error ---->" . mysqli_error($conn);
+        }
     }
 }
 ?>
